@@ -21,9 +21,6 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
- * @property string $fname
- * @property string $phone
- * @property string $zone
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -61,7 +58,6 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             ['role', 'default', 'value' => 10],
-            ['fname', 'string', 'max' => 45],
         ];
     }
 
@@ -227,15 +223,5 @@ class User extends ActiveRecord implements IdentityInterface
              return false;
       }
         
-    }
-
-    public function scenarios()
-    {
-        $scenarios = parent::scenarios();
-        // add field to scenarios
-        $scenarios['create'][]   = 'fname';
-        $scenarios['update'][]   = 'fname';
-        $scenarios['register'][] = 'fname';
-        return $scenarios;
     }
 }

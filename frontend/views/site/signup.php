@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
+//goto5: edit view accordingly. add input fields in the form
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>

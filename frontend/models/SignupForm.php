@@ -13,6 +13,8 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+
+    //goto1: add vars here
     public $fname;
     public $zone;
     public $phone;
@@ -37,6 +39,7 @@ class SignupForm extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
 
+            //goto2: add vars here so user model can accept the values from post
             ['fname', 'string'],
             ['phone', 'string'],
             ['zone', 'string']            
@@ -50,7 +53,6 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        // echo "<script>alert('$this->email');</script>"; 
         // echo "<script>alert('$this->fname');</script>"; 
         if (!$this->validate()) {
             return null;
@@ -59,9 +61,12 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+
+        //goto3: insert additional field values here
         $user->fname = $this->fname;
         $user->phone = $this->phone;
         $user->zone = $this->zone;
+        
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
